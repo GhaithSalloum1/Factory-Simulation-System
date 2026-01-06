@@ -39,11 +39,18 @@ One of the core features is the **Line Breakdown Recovery**:
 * `/data`: Initial seed data for the factory state.
 
 ---
+## **Class Diagram**
+
+<img width="1778" height="1097" alt="105" src="https://github.com/user-attachments/assets/98d5d882-77d0-4de7-8d3b-f467c41d4ffa" />
+
+---
 
 ## 👥 Team | فريق العمل
 * **Mahmoud Al-Kowatli** (Project Lead)
 * **GhaithSalloum1**
 * **HussamAdinAlKayyal**
 * [Team Member 4]
+
+
 
 
