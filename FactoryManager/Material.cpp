@@ -2,6 +2,20 @@
 
 int Material::counter = 0;
 
+const Material Material::SCREW = Material("Screw", 30);
+
+const Material Material::METAL_FRAME = Material("Metal Frame", 30);
+
+const Material Material::FABRIC = Material("Fabric", 10);
+
+const Material Material::WOOD_PANELS = Material("Wood Panels", 10);
+
+const Material Material::LED_UNITS = Material("RGB Units", 20);
+
+const Material Material::METAL_HANDLES = Material("Metal Handles", 10);
+
+const Material Material::PAINT = Material("Paint", 4);
+
 Material::Material(string name, int quantity)
 {
 	id = ++counter;

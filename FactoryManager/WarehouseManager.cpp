@@ -13,6 +13,7 @@ Product WarehouseManager::getProductDetails(int id)
 {
 	if (productCatalog.find(id) != productCatalog.end())
 		return productCatalog[id];
+	return Product();
 }
 
 bool WarehouseManager::consumeMaterialsForOrder(int productID, int qty)
