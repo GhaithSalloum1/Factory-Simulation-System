@@ -3,17 +3,15 @@
 class User
 {
 public:
-	User();
-	~User();
+    User();
+    ~User();
 
-	void login();
+    void login();
 
-	void logout();
+    void logout();
 
 private:
-	//staic username&password 
-	string username = "Admin";
-	string password = "Admin123";
+    //staic username&password 
+    string username = "Admin";
+    string password = "Admin123";
 };
-
-

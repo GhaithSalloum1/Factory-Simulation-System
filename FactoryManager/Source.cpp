@@ -1,10 +1,7 @@
-#include"Libraries.h"
-#include"User.h"
+#include "Product.h"
 
-int main() {
-	
-	User u1;
-
-	u1.login();
-
+int main()
+{
+	time_t now = time(0);
+	cout << now;
 }
