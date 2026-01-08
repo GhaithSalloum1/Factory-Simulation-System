@@ -1,9 +1,11 @@
+#pragma once
+#include"Libraries.h"
 #include "Order.h"
 
-int Order::calculateValue() {
-	return 0;
+void Order::calculateValue() {
+	return;
 }
 
-bool Order::operator<(Order other) {
+bool Order::operator<(const Order& other) {
 	return false;
 }

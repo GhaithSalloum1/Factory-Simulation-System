@@ -1,6 +1,7 @@
 #pragma once
 #include "Libraries.h"
 #include "Product.h"
+#include"ProductUnit.h"
 #include "Material.h"
 
 class WarehouseManager {

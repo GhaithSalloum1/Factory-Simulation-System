@@ -11,4 +11,4 @@ private:
 
 public:
     void addEvent(string desc);
-}
+};

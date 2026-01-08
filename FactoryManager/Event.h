@@ -6,4 +6,4 @@ class Event
 
     string description;
     time_t timestamp;
-}
+};

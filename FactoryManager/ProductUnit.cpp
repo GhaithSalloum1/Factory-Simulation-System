@@ -2,5 +2,5 @@
 
 void ProductUnit::addEvent(string desc)
 {
-    return
+    return;
 }
