@@ -51,3 +51,8 @@ void OrdersManager::getAllOrdersHistory()
 		i.second.printOrder();
 	}
 }
+
+Order OrdersManager::getOrderByID(int ID)
+{
+	return ordersDatabase[ID];
+}

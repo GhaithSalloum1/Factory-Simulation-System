@@ -22,6 +22,7 @@ Product::Product(string name, double unitPrice, vector<pair<Material, int>> requ
 	this->name = name;
 	this->unitPrice = unitPrice;
 	this->requirements = requirements;
+
 	auto atd = [=](const Product &product)
 	{
 		productDatabase[product.getID()] = product;
@@ -31,11 +32,18 @@ Product::Product(string name, double unitPrice, vector<pair<Material, int>> requ
 	atd(GAMING_DESK);
 	atd(OFFICER_CHAIR);
 	atd(WOODEN_DESK);
+
+	registerProduct(*this);
 }
 
 int Product::getID() const
 {
 	return id;
+}
+
+string Product::getName()
+{
+	return name;
 }
 
 vector<pair<Material, int>> Product::getRequirements()
@@ -51,4 +59,20 @@ double Product::getPrice() const
 Product Product::getProduct(int id)
 {
 	return productDatabase[id];
+}
+
+void Product::registerProduct(const Product &product)
+{
+	productDatabase[product.id] = product;
+}
+
+void Product::traverse(void (*function)(Product product))
+{
+	for (const pair<int, Product> &p : productDatabase)
+		function(p.second);
+}
+
+bool Product::isFound(int id)
+{
+	return productDatabase.find(id) != productDatabase.end();
 }

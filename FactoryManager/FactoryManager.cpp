@@ -120,7 +120,7 @@ Order::Priority FactoryManager::setPriority()
     }
 }
 
-int FactoryManager::AddOrder()
+void FactoryManager::AddOrder()
 {
 
     cout << "please, enter the required order's information in order" << endl;
@@ -136,23 +136,39 @@ int FactoryManager::AddOrder()
 
     orderManager.receiveOrder(TheOrder);
     int id = TheOrder.getID();
-    return id;
+    cout << "your order's ID is: " << id << endl;
+    cout << "your order's total price is: " << TheOrder.totalValue << endl;
 }
 
 void FactoryManager::editOrder(int orderID)
 {
     cout << "please enter the order's ID: " << endl;
-    int orderID;
-    // if (orderManager.getOrderByID(id) == false)
-    //{
-    //     cout << "order not found, ID is wrong, please try again.";
-    //     return;
-    // }
-    orderID = checkIfNumber();
+    if (orderManager.orderExist(orderID) == false)
+    {
+        cout << "order not found, ID is wrong, please try again.";
+        return;
+    }
+    orderManager.getOrderByID(orderID);
     cout << "please choose what do you want to change by typing the number of it:" << endl;
     cout << "1- edit order's priority" << endl;
     cout << "2- edit order's quantity" << endl;
     cout << "3- edit orders's product" << endl;
+
+    int choice;
+    choice = checkIfNumber(1, 3);
+    if (choice == 1)
+    {
+        orderManager.getOrderByID(orderID).setPriority(setPriority());
+    }
+    else if (choice == 2)
+    {
+        int newQuantity = checkIfNumber();
+        orderManager.getOrderByID(orderID).setQuantity(newQuantity);
+        // cout << "the new price of your order: " << orderManager.getOrderByID(orderID).totalValue << endl;
+    }
+    else if (choice == 3)
+    {
+    }
 }
 
 void FactoryManager::showHistory()
@@ -181,8 +197,7 @@ void FactoryManager::runSimulation()
         UserChoice = checkIfNumber(1, 4);
         if (UserChoice == 1)
         {
-            int x = AddOrder();
-            cout << "your order's ID is: " << x << endl;
+            AddOrder();
         }
         else if (UserChoice == 2)
         {
