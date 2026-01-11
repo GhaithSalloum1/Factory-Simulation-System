@@ -52,7 +52,13 @@ void OrdersManager::getAllOrdersHistory()
 	}
 }
 
-Order OrdersManager::getOrderByID(int ID)
+Order* OrdersManager::getOrderByID(int ID)
 {
-	return ordersDatabase[ID];
+	auto it = ordersDatabase.find(ID);
+
+	if (it == ordersDatabase.end()) {
+		return nullptr; 
+	}
+
+	return &(it->second);
 }
