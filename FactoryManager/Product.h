@@ -20,7 +20,7 @@ public:
     double getPrice() const;
     static Product getProduct(int id);
     static void registerProduct(const Product& product);
-    static void traverse(void(*function)(Product product));
+    static void traverse(void(*function)(Product));
     static bool isFound(int id);
     static const Product OFFICER_CHAIR;
     static const Product WOODEN_DESK;

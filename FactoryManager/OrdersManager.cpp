@@ -43,6 +43,14 @@ void OrdersManager::receiveOrder(Order order)
 
 }
 
+bool OrdersManager::getOrderByID(Order& order, int ID)
+{
+	if (ordersDatabase.find(ID) == ordersDatabase.end())
+		return false;
+	order = ordersDatabase[ID];
+	return true;
+}
+
 
 void OrdersManager::getAllOrdersHistory()
 {
@@ -50,15 +58,4 @@ void OrdersManager::getAllOrdersHistory()
 	{
 		i.second.printOrder();
 	}
-}
-
-Order* OrdersManager::getOrderByID(int ID)
-{
-	auto it = ordersDatabase.find(ID);
-
-	if (it == ordersDatabase.end()) {
-		return nullptr; 
-	}
-
-	return &(it->second);
 }

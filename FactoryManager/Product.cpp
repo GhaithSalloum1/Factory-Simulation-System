@@ -66,7 +66,7 @@ void Product::registerProduct(const Product &product)
 	productDatabase[product.id] = product;
 }
 
-void Product::traverse(void (*function)(Product product))
+void Product::traverse(void(*function)(Product))
 {
 	for (const pair<int, Product> &p : productDatabase)
 		function(p.second);
