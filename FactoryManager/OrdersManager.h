@@ -11,6 +11,6 @@ class OrdersManager
 	unordered_map<int, Order> ordersDatabase;
 public:
     void receiveOrder(Order order);
-    Order getOrderByID(int ID);
+    Order* getOrderByID(int ID);
     void getAllOrdersHistory();
 };
