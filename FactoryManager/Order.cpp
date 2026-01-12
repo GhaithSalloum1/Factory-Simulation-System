@@ -8,6 +8,7 @@ int Order::counter = 1;
 Order::Order(Priority priority, int requiredQuantity, Product product)
 {
     this->product = product;
+    this->client = client;
     this->productID;
     id = counter++;
     this->priority = priority;
@@ -107,4 +108,9 @@ void Order::setQuantity(int newQuantity)
 double Order::getTotalValue()
 {
     return totalValue;
+}
+
+void Order::setClientID(int clientID)
+{
+    this->clientID = clientID;
 }

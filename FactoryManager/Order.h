@@ -16,15 +16,18 @@ private:
     int clientID;
     int productID;
     double totalValue;
+    // These two might be deleted later 
     Client client;
     Product product;
+    //
     Priority priority;
 
 public:
     double calculateValue();
 
     bool operator<(const Order& other) const;
-
+    
+    // change the constructor
     Order(Priority priority, int requiredQuantity, Product product);
 
     Order();
@@ -49,4 +52,5 @@ public:
 
 	double getTotalValue();
 
+    void setClientID(int clientID);
 };
