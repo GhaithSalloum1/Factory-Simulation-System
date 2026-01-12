@@ -51,7 +51,8 @@ void Order::printOrder() {
     else if (priority == URGENT) {
         cout << "URGENT" << endl;
     }
-    //cout << "Arrival Time: " << ctime_s () << endl;
+	char timeBuffer[26];
+    cout << "Arrival Time: " << ctime_s (timeBuffer, sizeof(timeBuffer), &arrivalTime) << endl;
 }
 
 // Operator overloading
