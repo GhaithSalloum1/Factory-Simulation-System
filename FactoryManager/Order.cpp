@@ -52,7 +52,8 @@ void Order::printOrder() {
         cout << "URGENT" << endl;
     }
 	char timeBuffer[26];
-    cout << "Arrival Time: " << ctime_s (timeBuffer, sizeof(timeBuffer), &arrivalTime) << endl;
+    ctime_s(timeBuffer, sizeof(timeBuffer), &arrivalTime);
+    cout << "Arrival Time: " << timeBuffer << endl;
 }
 
 // Operator overloading

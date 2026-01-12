@@ -8,10 +8,11 @@ private:
     static int counter;
     int unitID;
     int parentOrderID;
+    bool isFinished;
     vector<Event> history;
 
 public:
     ProductUnit();
-    ProductUnit(int unitId, int parentOrderID);
+    ProductUnit(int parentOrderID);
     void addEvent(string desc);
 };
