@@ -11,7 +11,7 @@ Client::Client()
     //autmoatically assigns IDs to Clients everytime a new Client is created
     this->id = counter++;
 	this->name = "Guest";
-    registerClient(*this);
+    //registerClient(*this);
 }
 
 Client::Client(string name)
