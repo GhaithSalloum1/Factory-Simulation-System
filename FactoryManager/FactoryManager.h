@@ -15,10 +15,9 @@ public:
 	ProductionFloor productionFloor;
 	void runSimulation();
 	void AddOrder();
-	void editOrder(int id);
-	void deleteOrder();
+	void editOrder(int orderID);
+	void deleteOrder(int orderID);
 	void showHistory();
-	bool checkIfOrderExist(int id);
 	Product choosingProduct();
 	int checkIfNumber();
 	int checkIfNumber(int x, int y);

@@ -8,7 +8,7 @@ FactoryManager::~FactoryManager()
 {
 }
 
-int FactoryManager::checkIfNumber()
+int FactoryManager::checkIfNumber() // chechs if user entered a number or not
 {
     string TheInput;
     float x;
@@ -30,7 +30,7 @@ int FactoryManager::checkIfNumber()
     return x;
 }
 
-int FactoryManager::checkIfNumber(int x, int y)
+int FactoryManager::checkIfNumber(int x, int y) // checks if a the input is number & between range x,y
 {
     string TheInput;
     float num;
@@ -143,7 +143,7 @@ void FactoryManager::AddOrder()
 void FactoryManager::editOrder(int orderID)
 {
     cout << "please enter the order's ID: " << endl;
-    if (orderManager.orderExist(orderID) == false)
+    if (orderManager.getOrderByID(orderID) == nullptr)
     {
         cout << "order not found, ID is wrong, please try again.";
         return;
@@ -152,22 +152,18 @@ void FactoryManager::editOrder(int orderID)
     cout << "please choose what do you want to change by typing the number of it:" << endl;
     cout << "1- edit order's priority" << endl;
     cout << "2- edit order's quantity" << endl;
-    cout << "3- edit orders's product" << endl;
 
     int choice;
     choice = checkIfNumber(1, 3);
     if (choice == 1)
     {
-        orderManager.getOrderByID(orderID).setPriority(setPriority());
+        orderManager.getOrderByID(orderID)->setPriority(setPriority());
     }
     else if (choice == 2)
     {
         int newQuantity = checkIfNumber();
-        orderManager.getOrderByID(orderID).setQuantity(newQuantity);
-        // cout << "the new price of your order: " << orderManager.getOrderByID(orderID).totalValue << endl;
-    }
-    else if (choice == 3)
-    {
+        orderManager.getOrderByID(orderID)->setQuantity(newQuantity);
+        cout << "the new price of your order: " << orderManager.getOrderByID(orderID)->getTotalValue() << endl;
     }
 }
 
@@ -177,8 +173,15 @@ void FactoryManager::showHistory()
     orderManager.getAllOrdersHistory();
 }
 
-void FactoryManager::deleteOrder()
+void FactoryManager::deleteOrder(int orderID)
 {
+    cout << "please enter the order's ID: " << endl;
+    if (orderManager.getOrderByID(orderID) == nullptr)
+    {
+        cout << "order not found, ID is wrong, please try again.";
+        return;
+    }
+    // still have to delete the order from the list
 }
 
 void FactoryManager::runSimulation()
@@ -195,6 +198,7 @@ void FactoryManager::runSimulation()
         cout << "5- if you want to stop the program" << endl;
         int UserChoice;
         UserChoice = checkIfNumber(1, 4);
+
         if (UserChoice == 1)
         {
             AddOrder();
@@ -207,7 +211,9 @@ void FactoryManager::runSimulation()
         }
         else if (UserChoice == 3)
         {
-            deleteOrder();
+            int id;
+            id = checkIfNumber();
+            deleteOrder(id);
         }
         else if (UserChoice = 4)
         {

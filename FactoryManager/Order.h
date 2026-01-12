@@ -45,4 +45,6 @@ public:
 
     void setQuantity(int newQuantity);
 
+	double getTotalValue();
+
 };

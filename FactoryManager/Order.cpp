@@ -97,3 +97,8 @@ void Order::setQuantity(int newQuantity)
     requiredQuantity = newQuantity;
     totalValue = calculateValue();
 }
+
+double Order::getTotalValue()
+{
+    return totalValue;
+}
