@@ -142,13 +142,13 @@ void FactoryManager::AddOrder()
 
 void FactoryManager::editOrder(int orderID)
 {
+    Order order;
     cout << "please enter the order's ID: " << endl;
-    if (orderManager.getOrderByID(orderID) == nullptr)
+    if (!orderManager.getOrderByID(order, orderID))
     {
         cout << "order not found, ID is wrong, please try again.";
         return;
     }
-    orderManager.getOrderByID(orderID);
     cout << "please choose what do you want to change by typing the number of it:" << endl;
     cout << "1- edit order's priority" << endl;
     cout << "2- edit order's quantity" << endl;
@@ -157,13 +157,13 @@ void FactoryManager::editOrder(int orderID)
     choice = checkIfNumber(1, 3);
     if (choice == 1)
     {
-        orderManager.getOrderByID(orderID)->setPriority(setPriority());
+        order.setPriority(setPriority());
     }
     else if (choice == 2)
     {
         int newQuantity = checkIfNumber();
-        orderManager.getOrderByID(orderID)->setQuantity(newQuantity);
-        cout << "the new price of your order: " << orderManager.getOrderByID(orderID)->getTotalValue() << endl;
+        order.setQuantity(newQuantity);
+        cout << "the new price of your order: " << order.getTotalValue() << endl;
     }
 }
 
@@ -175,8 +175,9 @@ void FactoryManager::showHistory()
 
 void FactoryManager::deleteOrder(int orderID)
 {
+    Order order;
     cout << "please enter the order's ID: " << endl;
-    if (orderManager.getOrderByID(orderID) == nullptr)
+    if (!orderManager.getOrderByID(order, orderID))
     {
         cout << "order not found, ID is wrong, please try again.";
         return;
