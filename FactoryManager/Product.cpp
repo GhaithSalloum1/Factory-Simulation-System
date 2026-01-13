@@ -76,3 +76,8 @@ bool Product::isFound(int id)
 {
 	return productDatabase.find(id) != productDatabase.end();
 }
+
+int Product::getProductsNumber()
+{
+	return productDatabase.size();
+}

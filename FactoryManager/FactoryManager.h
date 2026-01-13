@@ -19,6 +19,8 @@ public:
 	void deleteOrder(int orderID);
 	void showHistory();
 	Product choosingProduct();
+	int choosingProductID();
+	int choosingClientID();
 	int checkIfNumber();
 	int checkIfNumber(int x, int y);
 	Order::Priority setPriority();

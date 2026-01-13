@@ -27,6 +27,11 @@ int Client::getID() const
     return id;
 }
 
+string Client::getName()
+{
+    return name;
+}
+
 void Client::addOrderHistory(int ID)
 {
 	orderHistoryIDs.push_back(ID);
@@ -39,6 +44,17 @@ void Client::printClientInfo() const
     cout << "Client Orders: ";
     OrdersManager::printOrderByClientID(id);
     cout << endl;
+}
+
+void Client::traverse(void(*function)(Client))
+{
+    for (auto& p : clientsDatabase)
+        function(p.second);
+}
+
+int Client::getClientsNumber()
+{
+    return clientsDatabase.size();
 }
 
 Client Client::getClient(int ID)

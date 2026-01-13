@@ -14,8 +14,11 @@ public:
     static Client getClient(int ID);
     static void registerClient(Client client);
     int getID() const;
+    string getName();
     void addOrderHistory(int ID);
     void printClientInfo() const;
+    static void traverse(void(*function)(Client));
+    static int getClientsNumber();
 
     //Some data for testing
 	static Client CLIENT_1;

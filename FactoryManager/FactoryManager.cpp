@@ -11,7 +11,7 @@ FactoryManager::~FactoryManager()
 int FactoryManager::checkIfNumber() // chechs if user entered a number or not
 {
     string TheInput;
-    float x;
+    int x;
     while (true)
     {
         try
@@ -19,7 +19,7 @@ int FactoryManager::checkIfNumber() // chechs if user entered a number or not
             cout << "please enter the number: ";
             cin >> TheInput;
             cout << endl;
-            x = stof(TheInput);
+            x = stoi(TheInput);
             break;
         }
         catch (...)
@@ -33,7 +33,7 @@ int FactoryManager::checkIfNumber() // chechs if user entered a number or not
 int FactoryManager::checkIfNumber(int x, int y) // checks if a the input is number & between range x,y
 {
     string TheInput;
-    float num;
+    int num;
     while (true)
     {
         try
@@ -49,7 +49,7 @@ int FactoryManager::checkIfNumber(int x, int y) // checks if a the input is numb
             }
 
             cout << endl;
-            num = stof(TheInput);
+            num = stoi(TheInput);
             if (num < x && num > y)
             {
                 throw "input number out of range";
@@ -97,9 +97,24 @@ Product FactoryManager::choosingProduct()
     }
 }
 
+int FactoryManager::choosingProductID()
+{
+    cout << "Please choose the product you want by typing its number:\n";
+    Product::traverse([](Product p) { cout << p.getID() << ") " << p.getName() << endl; });
+    int maximum = Product::getProductsNumber();
+    return checkIfNumber(1, maximum);
+}
+
+int FactoryManager::choosingClientID()
+{
+    cout << "Which of these clients want to place an order (choose client's number):\n";
+    Client::traverse([](Client c) { cout << c.getID() << ") " << c.getName() << endl; });
+    int maximum = Client::getClientsNumber();
+    return checkIfNumber(1, maximum);
+}
+
 Order::Priority FactoryManager::setPriority()
 {
-
     int choice;
     cout << "please choose the order's priority you want by typing its number" << endl;
     cout << "1- Normal" << endl;
@@ -125,6 +140,7 @@ void FactoryManager::AddOrder()
 
     cout << "please, enter the required order's information in order" << endl;
     Product chosenProduct = choosingProduct();
+    int productID = choosingProductID(), clientID = choosingClientID();
 
     cout << "please, enter the quantity you want: " << endl;
     int quantity = checkIfNumber();
@@ -132,7 +148,7 @@ void FactoryManager::AddOrder()
     cout << "please, set the priority: " << endl;
     Order::Priority priorityChosen = setPriority();
 
-    Order TheOrder(priorityChosen, quantity, chosenProduct);
+    Order TheOrder(priorityChosen, quantity, productID, clientID);
 
     orderManager.receiveOrder(TheOrder);
     int id = TheOrder.getID();

@@ -5,34 +5,31 @@
 
 int Order::counter = 1;
 
-Order::Order(Priority priority, int requiredQuantity, Product product)
+Order::Order(Priority priority, int requiredQuantity, int productID, int clientID)
 {
-    this->product = product;
-    this->client = client;
-    this->productID;
     id = counter++;
     this->priority = priority;
     this->requiredQuantity = requiredQuantity;
     arrivalTime = time(0);
     totalValue = calculateValue();
-    this->productID = product.getID();
-    this->clientID = client.getID();
+    this->productID = productID;
+    this->clientID = clientID;
+    productPrice = Product::getProduct(productID).getPrice();
 }
 
 Order::Order() {
     id = counter++;
-    this->priority = NORMAL;
-    this->requiredQuantity = 1;
-    this->product = Product::OFFICER_CHAIR;
+    priority = NORMAL;
+    requiredQuantity = 1;
     arrivalTime = time(0);
     totalValue = calculateValue();
-    this->productID = product.getID();
-	this->clientID = client.getID();
+    productID = 1;
+	clientID = 1;
 }
 
 
 double Order::calculateValue() {
-    return product.getPrice() * requiredQuantity;
+    return productPrice * requiredQuantity;
 }
 
 void Order::printOrder() {
@@ -75,7 +72,7 @@ void Order::setPriority(Priority p) {
 
 Product Order::getProduct()
 {
-    return product;
+    return Product::getProduct(productID);
 }
 
 int Order::getProductID()
@@ -97,6 +94,11 @@ int Order::getID() {
 int Order::getClientID()
 {
     return clientID;
+}
+
+Client Order::getClient(int clientID)
+{
+    return Client::getClient(clientID);
 }
 
 void Order::setQuantity(int newQuantity)

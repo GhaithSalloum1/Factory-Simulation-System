@@ -15,11 +15,8 @@ private:
     int requiredQuantity;
     int clientID;
     int productID;
+    int productPrice;
     double totalValue;
-    // These two might be deleted later 
-    Client client;
-    Product product;
-    //
     Priority priority;
 
 public:
@@ -28,7 +25,7 @@ public:
     bool operator<(const Order& other) const;
     
     // change the constructor
-    Order(Priority priority, int requiredQuantity, Product product);
+    Order(Priority priority, int requiredQuantity, int productID, int clientID);
 
     Order();
 
@@ -45,6 +42,8 @@ public:
     int getRequiredQuantity();
 
     int getClientID();
+
+    Client getClient(int clientID);
 
     void printOrder();
 
