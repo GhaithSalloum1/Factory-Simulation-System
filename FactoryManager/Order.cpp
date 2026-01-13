@@ -30,7 +30,20 @@ Order::Order() {
 
 
 double Order::calculateValue() {
-    return productPrice * requiredQuantity;
+    switch (priority)
+    {
+    case Order::NORMAL:
+		return productPrice * requiredQuantity;
+        break;
+    case Order::VIP:
+		return productPrice * requiredQuantity * 1.2;
+        break;
+    case Order::URGENT:
+		return productPrice * requiredQuantity * 1.5;
+        break;
+    default:
+        break;
+    }
 }
 
 void Order::printOrder() {
