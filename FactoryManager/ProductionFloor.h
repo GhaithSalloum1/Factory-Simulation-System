@@ -11,6 +11,8 @@ class ProductionFloor
 
 public:
     static void setNumberOfLines(int linesNum);
+    static void getLines();
+    static int getNoOfLines();
     static void assignOrder(int lineID, Order o);
     static void handleLineBreakdown(int brokenLineID);
     static void processNextOrder(int lineID);

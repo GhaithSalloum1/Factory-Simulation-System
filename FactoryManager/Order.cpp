@@ -19,13 +19,13 @@ Order::Order(Priority priority, int requiredQuantity, int productID, int clientI
 }
 
 Order::Order() {
-    id = counter++;
+    id = 0;
     priority = NORMAL;
-    requiredQuantity = 1;
+    requiredQuantity = 0;
     arrivalTime = time(0);
     totalValue = calculateValue();
-    productID = 1;
-	clientID = 1;
+    productID = 0;
+	clientID = 0;
 }
 
 
@@ -113,6 +113,21 @@ void Order::setQuantity(int newQuantity)
 double Order::getTotalValue()
 {
     return totalValue;
+}
+
+
+// Hussam wanted to show that he is a professor in C++ and taught me how to do this for_each
+vector<pair<Material, int>> Order::getTotalRequiredMaterials()
+{
+    vector<pair<Material, int>> vMaterials = getProduct().getRequirements();
+    
+    for_each(vMaterials.begin(), vMaterials.end(), [=](pair<Material, int>& p) {
+
+        p.second *= requiredQuantity;
+
+        });
+
+    return vMaterials;
 }
 
 void Order::setClientID(int clientID)

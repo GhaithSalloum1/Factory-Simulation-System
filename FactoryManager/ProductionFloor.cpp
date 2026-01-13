@@ -13,6 +13,21 @@ void ProductionFloor::setNumberOfLines(int linesNum)
     emergencyLineIndex = linesNum - 1;
 }
 
+void ProductionFloor::getLines()
+{
+    cout << "\n================================================================\n";
+    for (int i = 0;i < lines.size();i++)
+    {
+        cout << "Line [" << i << "] has: " << lines[i].size() << " Orders" << endl;
+    }
+    cout << "\n================================================================\n";
+}
+
+int ProductionFloor::getNoOfLines()
+{
+    return lines.size();
+}
+
 void ProductionFloor::assignOrder(int linID ,Order o){
     if (linID >= 0 && linID < lines.size()){
         lines[linID].push(o);

@@ -54,6 +54,29 @@ bool OrdersManager::tryDeleteOrder(int orderID)
 	return true;
 }
 
+bool OrdersManager::tryDeleteFromList()
+{
+	if (receptionQueue.empty())
+	{
+		return false;
+	}
+	receptionIndex.erase(receptionQueue.front().getID());
+	receptionQueue.pop_front();
+	return true;
+}
+
+bool OrdersManager::tryGetTopOrder(Order& order)
+{
+	if (receptionQueue.empty())
+	{
+		return false;
+	}
+		order = receptionQueue.front();
+		return true;
+}
+
+
+
 bool OrdersManager::getOrderByID(Order& order, int ID)
 {
 	if (ordersDatabase.find(ID) == ordersDatabase.end())

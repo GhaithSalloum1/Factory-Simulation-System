@@ -16,6 +16,8 @@ class FactoryManager
 	static int choosingClientID();
 	static int checkIfNumber();
 	static int checkIfNumber(int x, int y);
+	static void startProduction();
+	static void registerOrder();
 	static Order::Priority setPriority();
 
 public:

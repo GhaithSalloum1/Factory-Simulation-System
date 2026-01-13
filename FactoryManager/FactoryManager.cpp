@@ -73,6 +73,97 @@ int FactoryManager::checkIfNumber(int x, int y) // checks if a the input is numb
     return num;
 }
 
+void FactoryManager::registerOrder() {
+    
+    
+
+
+    Order order;
+    bool orderExists = OrdersManager::tryGetTopOrder(order);
+
+    cout << "\n";
+
+    if (!orderExists || order.getID() == 0)
+    {
+        cout << "There are no orders to start the production, wait for some Clients to Order some Products\n";
+        return;
+    }
+    bool status = WarehouseManager::consumeMaterialsForOrder(order);
+    cout << "Next order is: [" << order.getID() << ", For the Client: " << order.getClient().getName() << ", Line: " << endl;
+    order.printOrder();
+
+    if (!status)
+    {
+        cout << "There are no enough materials! \n";
+
+        cout << "The product needs:\n";
+
+
+        cout << "\n================================================================\n";
+        for (auto& i : order.getTotalRequiredMaterials())
+        {
+            cout << i.first.getName() << " : " << i.second << endl;
+        }
+        cout << "\n================================================================\n";
+
+        cout << "Please go and buy the missing materials.";
+        return;
+    }
+  
+    int Line = ProductionFloor::findBestAvailableLine(0);
+    ProductionFloor::assignOrder(Line, order);
+    cout << "\nThe order" << order.getID() << "was placed in the line[" << Line << "].";
+    
+}
+
+void FactoryManager::startProduction()
+{
+    while (true)
+    {
+        cout << "\n================================================================\n";
+        cout << "please choose one of the following actions by choosing its number: " << endl;
+        cout << "1- Start making an order" << endl;
+        cout << "2- Emergency" << endl;
+        cout << "3- Buy materials" << endl;
+        cout << "4- Display production floor statues" << endl;
+        cout << "5- Stop production" << endl;
+        cout << "\n================================================================\n";
+        int UserChoice;
+        UserChoice = checkIfNumber(1, 5);
+
+        system("cls");
+        switch (UserChoice)
+        {
+        case 1:
+            registerOrder();
+            pressAnyButtonToContinue();
+            break;
+        case 2:
+            editOrder();
+            pressAnyButtonToContinue();
+            break;
+        case 3:
+            tryDeleteOrder();
+            pressAnyButtonToContinue();
+            break;
+        case 4:
+            showHistory();
+            pressAnyButtonToContinue();
+            break;
+        case 5:
+
+            break;
+        case 6:
+            cout << "Thank you for using our services :-)\n";
+            pressAnyButtonToContinue();
+            return;
+        default:
+            break;
+        }
+
+    }
+}
+
 int FactoryManager::choosingProductID()
 {
     cout << "\n================================================================\n";
@@ -205,10 +296,11 @@ void FactoryManager::runSimulation()
         cout << "2- if you want to edit an existing order" << endl;
         cout << "3- if you want to to delete order" << endl;
         cout << "4- if want to see all order's history" << endl;
-        cout << "5- if you want to stop the program" << endl;
+        cout << "5- Start production" << endl;
+        cout << "6- if you want to stop the program" << endl;
         cout << "\n================================================================\n";
         int UserChoice;
-        UserChoice = checkIfNumber(1, 5);
+        UserChoice = checkIfNumber(1, 6);
 
             system("cls");
         switch (UserChoice)
@@ -230,6 +322,10 @@ void FactoryManager::runSimulation()
             pressAnyButtonToContinue();
             break;
         case 5:
+            startProduction();
+            pressAnyButtonToContinue();
+            break;
+        case 6:
             cout << "Thank you for using our services :-)\n";
             pressAnyButtonToContinue();
             return;
