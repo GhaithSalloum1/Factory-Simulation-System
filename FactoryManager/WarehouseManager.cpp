@@ -50,6 +50,7 @@ bool WarehouseManager::consumeMaterialsForOrder(Order order)
 		int materialID = requirement.first.getID();
 		int totalQuantity = order.getRequiredQuantity() * materialQuantity;
 		consumeFromStorageBins(materialID, totalQuantity);
+		inventoryCounts[materialID] -= totalQuantity;
 	}
 	return true;
 }
@@ -93,7 +94,8 @@ void WarehouseManager::showMaterials()
 		{
 			cout << "\tBox number: " << ++count << " has " << p.getQuantity() << endl;
 		}
-		cout << "---------------------------------------------\n\n";
+		cout << "---------------------------------------------\n";
+		cout << "Total: " << inventoryCounts[materialID] << endl << endl;
 		});
 }
 

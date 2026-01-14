@@ -209,12 +209,13 @@ void FactoryManager::startProduction()
         cout << "4- Display production floor statues" << endl;
         cout << "5- Process next order" << endl;
         cout << "6- Show how much materials in warehouse" << endl;
-        cout << "7- Display products that are ready for shipping" << endl;
-        cout << "8- Do the shipping" << endl;
-        cout << "9- Return to main menu" << endl;
+        cout << "7- Display products that are finished" << endl;
+        cout << "8- Navigate the finished products to warehouse for shipping" << endl;
+        cout << "9- Do the shipping" << endl;
+        cout << "10- Return to main menu" << endl;
         cout << "\n================================================================\n";
         int UserChoice;
-        UserChoice = checkIfNumber(1, 9);
+        UserChoice = checkIfNumber(1, 10);
                 #ifdef _WIN32
             #define CLEAR_SCREEN "cls"
         #else
@@ -251,10 +252,14 @@ void FactoryManager::startProduction()
             pressAnyButtonToContinue();
             break;
         case 8:
-            shipping();
+            prepareForShipping();
             pressAnyButtonToContinue();
             break;
         case 9:
+            shipping();
+            pressAnyButtonToContinue();
+            break;
+        case 10:
             return;
         default:
             break;
@@ -363,12 +368,14 @@ void FactoryManager::editOrder()
     }
     cout << "Please choose what do you want to change by typing the number of it:" << endl;
     cout << "1- edit order's priority" << endl;
-    cout << "2- edit order's quantity";
-    cout << "\n================================================================\n";
+    cout << "2- edit order's quantity" << endl;
+    cout << "3- return" << endl;
+    cout << "================================================================\n";
     int choice = checkIfNumber(1, 2);
     if (choice == 1)
     {
         order.setPriority(setPriority());
+        cout << "the new price of your order: " << order.getTotalValue() << endl;
     }
     else if (choice == 2)
     {
@@ -376,6 +383,8 @@ void FactoryManager::editOrder()
         order.setQuantity(newQuantity);
         cout << "the new price of your order: " << order.getTotalValue() << endl;
     }
+    else
+        return;
     OrdersManager::changeOrder(order);
 }
 
@@ -405,6 +414,9 @@ void FactoryManager::tryDeleteOrder()
 void FactoryManager::seedInitialData()
 {
     ProductionFloor::setNumberOfLines(3);
+    WarehouseManager::addMaterial(Material::SCREW, 3);
+    WarehouseManager::addMaterial(Material::METAL_FRAME, 7);
+    WarehouseManager::addMaterial(Material::FABRIC, 2);
 }
 
 void FactoryManager::runSimulation()

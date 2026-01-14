@@ -93,6 +93,7 @@ Order::Priority Order::getPriority() const {
 
 void Order::setPriority(Priority p) {
     priority = p;
+    totalValue = calculateValue();
 }
 
 Product Order::getProduct() const
