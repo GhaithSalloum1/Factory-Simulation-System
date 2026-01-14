@@ -81,7 +81,7 @@ void Order::printOrder() const {
 // Operator overloading
 
 bool Order::operator<(const Order& other) const {
-    return priority < other.priority;
+    return priority < other.priority && totalValue < other.totalValue;
 }
 
 
