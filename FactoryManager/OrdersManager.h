@@ -11,6 +11,8 @@ class OrdersManager
 public:
     static void receiveOrder(Order order);
     static bool tryDeleteOrder(int orderID);
+    static bool tryDeleteFromList();
+    static bool tryGetTopOrder(Order& order);
     static bool getOrderByID(Order& order, int ID);
     static void getAllOrdersHistory();
     static void printOrderByClientID(int clientID);

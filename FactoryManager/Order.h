@@ -51,5 +51,7 @@ public:
 
 	double getTotalValue();
 
+    vector<pair<Material,int>> getTotalRequiredMaterials();
+
     void setClientID(int clientID);
 };

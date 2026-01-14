@@ -6,7 +6,6 @@
 
 class FactoryManager
 {
-	ProductionFloor productionFloor;
 	static void addOrder();
 	static void editOrder();
 	static void printOrderDetailsForEditOrDelete(Order order);
@@ -15,9 +14,15 @@ class FactoryManager
 	static int choosingProductID();
 	static int choosingClientID();
 	static int checkIfNumber();
+	static void processOrder();
 	static int checkIfNumber(int x, int y);
+	static void startProduction();
+	static void handleLineBreakdown();
+	static void registerOrder();
+	static void buyMaterial();
 	static Order::Priority setPriority();
 
 public:
+	static void seedInitialData();
 	static void runSimulation();
 };
