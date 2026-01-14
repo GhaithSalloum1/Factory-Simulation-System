@@ -52,8 +52,9 @@ g++ -std=c++17 -o FactoryApp *.cpp
 ./FactoryApp
 
 ## Run in terminal:
-cd ~/Desktop/University/Projects/Factory-Simulation-System/FactoryManager && rm -f FactoryApp && g++ -std=c++17 -o FactoryApp *.cpp && ./FactoryApp
+cd ~/Desktop/University/Projects/Factory-Simulation-System/FactoryManager
 
+g++ -std=c++17 -o FactoryApp *.cpp && ./FactoryApp
 ---
 
 ## 🚨 Emergency Handling |  
